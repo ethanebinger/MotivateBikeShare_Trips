@@ -8,7 +8,7 @@ Created on Fri Feb  8 14:38:02 2019
 import csv
 import datetime as datetime
 
-working_dir = r'C:\Users\eebinger\Desktop\MotivateBikeShare_Trips\docs\NiceRide'
+working_dir = r'C:\Desktop\NiceRide'
 data_files = [
 	'201804-niceride-tripdata.csv',
 	'201805-niceride-tripdata.csv',

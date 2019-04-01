@@ -139,7 +139,6 @@
 				<span id="trips_date"></span><br>
 				<span id="cur_station">Ford Go Bike Trips</span><br>
 				<span id="num_trips"></span><br>
-				<!--<span id="freq_dest"></span>-->
 			</h3>
 		</div>
 		<div id="chart"></div>
@@ -314,7 +313,6 @@
 								.data(stations)
 								.enter()
 								.append("circle")
-									.attr("r", 5)	// update to be filled with CSV count data, show size of origin trips
 									.attr("class", "stations")
 									.attr("r", function(d, i) { 
 										return Math.sqrt(countByStation[d.properties.station_id])/4.0; 
@@ -323,25 +321,21 @@
 										return countByStation[b.properties.station_id] - countByStation[a.properties.station_id]; 
 									})
 									
-									.on("mouseover", function(d, i) { 
-										//$("#cur_station").text(d.properties.name);
-										//$("#num_trips").text(countByStation[d.properties.station_id].toLocaleString() + " trips originating at this station");
+									.on("mouseover", function(d, i) {
 										$(".arc.from_"+(d.properties.station_id).toLocaleString()).show();
-										//heatmapChart(heatmap_data, (d.properties.station_id).toLocaleString());
 									})
 									.on("mouseleave", function(d, i) {
-										//$("#cur_station").text("Ford Go Bike Trips");
-										//$("#num_trips").text("");
 										if(!$(this).hasClass("clicked_station")) {
 											$(".arc.from_"+(d.properties.station_id).toLocaleString()).hide();
 										};
-										//heatmapChart(heatmap_data, 'total');
 									})
 									.on("click", function(d, i) { 
 										$(".arc").hide();
 										$(".stations").removeClass("clicked_station");
 										$("#cur_station").text(d.properties.name);
-										$("#num_trips").text(countByStation[d.properties.station_id].toLocaleString() + " trips originating at this station");
+										$("#num_trips").text(
+											(countByStation[d.properties.station_id]/2).toLocaleString(undefined, {maximumFractionDigits: 0}) + " trips originating at this station"
+										);
 										$(".arc.from_"+(d.properties.station_id).toLocaleString()).show();
 										$(this).addClass("clicked_station");
 										heatmapChart(heatmap_data, (d.properties.station_id).toLocaleString());
@@ -464,7 +458,6 @@
 				$("#trips_date").text(month_text + ", " + year);
 				$("#cur_station").text("");
 				$("#num_trips").text("");
-				//$("#freq_dest").text("");
 				$(".stations").remove()
 				$(".stations").remove()
 				$(".lines").remove()

@@ -8,7 +8,7 @@ Created on Fri Feb  8 14:38:02 2019
 import csv
 import datetime as datetime
 
-working_dir = r'C:\Users\eebinger\Desktop\FordGoBike_Trips\docs'
+working_dir = r'C:\Desktop\FordGoBike'
 data_files = [
     '201706-fordgobike-tripdata.csv',
     '201707-fordgobike-tripdata.csv',

@@ -8,7 +8,7 @@ This is a temporary script file.
 import csv, json, urllib2
 from datetime import datetime
 
-working_dir = r'C:\Users\eebinger\Desktop\FordGoBike_Trips\docs'
+working_dir = r'C:\Desktop\FordGoBike'
 data_files = [
     #'201706-fordgobike-tripdata.csv',
     #'201707-fordgobike-tripdata.csv',

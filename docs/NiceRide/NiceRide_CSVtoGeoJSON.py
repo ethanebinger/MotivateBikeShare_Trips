@@ -10,7 +10,7 @@ import csv
 #import arcpy
 #import gdaltools
 
-working_dir = r'C:\Users\eebinger\Desktop\MotivateBikeShare_Trips\docs\NiceRide'
+working_dir = r'C:\Desktop\NiceRide'
 data_files = [
 	'201804-niceride-tripdata.csv',
 	'201805-niceride-tripdata.csv',
