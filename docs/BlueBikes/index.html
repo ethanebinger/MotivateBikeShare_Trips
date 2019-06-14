@@ -121,15 +121,15 @@
 				<option value="12">December</option>
 			</select>
 			<select id="year_select">
-				<!--<option value="2011">2011</option>-->
-				<!--<option value="2012">2012</option>-->
-				<!--<option value="2013">2013</option>-->
-				<!--<option value="2014">2014</option>-->
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
 				<option value="2015">2015</option>
 				<option value="2016">2016</option>
 				<option value="2017">2017</option>
 				<option value="2018" selected="selected">2018</option>
-				<!--<option value="2019">2019</option>-->
+				<option value="2019">2019</option>
 			</select>
 			<button id="go_button">Go</button>
 			<span id="loading">LOADING...</span>
@@ -281,7 +281,8 @@
 						};
 						
 						// BlueBike Station Locations
-						d3.json("BlueBike_Stations_Oct2018.geojson", function(error, collection) {
+						d3.json("geojson_data/stations_"+filedate.slice(0,4)+".geojson", function(error, collection) {
+						//d3.json("BlueBike_Stations_Oct2018.geojson", function(error, collection) {
 							if (error) throw error;
 							
 							var transform = d3.geo.transform({point: projectPoint}),
@@ -371,7 +372,8 @@
 							
 							tripLines.selectAll("path")
 								.data(function(d) { 
-									widthScale.domain([0, d3.max(linksByOrigin[d.properties.station_id], function(x) { return x.count; })])
+									try { widthScale.domain([0, d3.max(linksByOrigin[d.properties.station_id], function(x) { return x.count; })]) } 
+									catch(err) { console.log(err.message); };
 									return linksByOrigin[d.properties.station_id] || []; 
 								})
 								.enter()
@@ -441,6 +443,7 @@
 				});
 			};
 			
+			// Go button functionality
 			$("#go_button").on("click", function(e) {
 				var month = $("#month_select").find(":selected").val();
 				var month_text = $("#month_select").find(":selected").text();
@@ -453,6 +456,48 @@
 				$(".stations").remove()
 				$(".lines").remove()
 				load_trips(year, month);
+			});
+			
+			// Select options subset (because not all months are available within each year)
+			$("#year_select").change(function() {
+				var val = $(this).val();
+				var month = $("#month_select").find(":selected").val();
+				if (val == "2014" || val == "2015" || val == "2016" || val == "2017" || val == "2018") {
+					$("#month_select").html("<option value='01'>January</option><option value='02'>February</option><option value='03'>March</option><option value='04'>April</option><option value='05'>May</option><option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>")
+					$("#month_select").val(month).change();
+				} else if (val == "2019") {
+					$("#month_select").html("<option value='01'>January</option><option value='02'>February</option><option value='03'>March</option><option value='04'>April</option><option value='05'>May</option>")
+					if (month == "01" || month == "02" || month == "03" || month == "04" || month == "05") {
+						$("#month_select").val(month).change();
+					} else {
+						$("#month_select").val("05").change();
+					};
+				} else if (val == "2011") {
+					$("#month_select").html("<option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option>")
+					if (month == "07" || month == "08" || month == "09" || month == "10" || month == "11") {
+						$("#month_select").val(month).change();
+					} else if (month == "12") {
+						$("#month_select").val("11").change();
+					} else {
+						$("#month_select").val("07").change();
+					};
+				} else if (val == "2012") {
+					$("#month_select").html("<option value='03'>March</option><option value='04'>April</option><option value='05'>May</option><option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option>")
+					if (month == "01" || month == "02") {
+						$("#month_select").val("03").change();
+					} else if (month == "12") {
+						$("#month_select").val("11").change();
+					} else {
+						$("#month_select").val(month).change();
+					};
+				} else if (val == "2013") {
+					$("#month_select").html("<option value='04'>April</option><option value='05'>May</option><option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>")
+					if (month == "01" || month == "02" || month == "03") {
+						$("#month_select").val("04").change();
+					} else {
+						$("#month_select").val(month).change();
+					};
+				};
 			});
 			
 			// Load Map
