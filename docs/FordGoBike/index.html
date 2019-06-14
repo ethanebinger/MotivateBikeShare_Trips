@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Ford Go Bike Trip Map</title>
+		<title>Bay Wheels Trip Map</title>
 		<style>
 			@import url(//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.css);
 			#map {
@@ -97,29 +97,30 @@
 				http://bl.ocks.org/tjdecke/5558084
 				http://bl.ocks.org/Caged/6476579
 				
-			Data reformatted in Python, downloaded from Ford Go Bike:
+			Data reformatted in Python, downloaded from Ford Go Bike (now named Bay Wheels - May 2019):
 				https://www.fordgobike.com/system-data
+				https://s3.amazonaws.com/baywheels-data/index.html
 		-->
 	</head>
 	<body>
-		<h3 id="title">Ford Go Bike Trip Explorer</h3>
+		<h3 id="title">Bay Wheels Trip Explorer</h3>
 		<div id="map"></div>
 		<div id="caption_box">
 			<br>
 			<span>Change to update data: </span>
 			<select id="month_select">
 				<option value="01">January</option>
-				<option value="02" selected="selected">February</option>
+				<option value="02">February</option>
 				<option value="03">March</option>
 				<option value="04">April</option>
-				<option value="05">May</option>
-				<option value="06">June</option>
+				<option value="05" selected="selected">May</option>
+				<!--<option value="06">June</option>
 				<option value="07">July</option>
 				<option value="08">August</option>
 				<option value="09">September</option>
 				<option value="10">October</option>
 				<option value="11">November</option>
-				<option value="12">December</option>
+				<option value="12">December</option>-->
 			</select>
 			<select id="year_select">
 				<option value="2017">2017</option>
@@ -137,7 +138,7 @@
 			<button id="sj_zoom_button">San Jose</button>
 			<h3>
 				<span id="trips_date"></span><br>
-				<span id="cur_station">Ford Go Bike Trips</span><br>
+				<span id="cur_station">Bay Wheels Bike Trips</span><br>
 				<span id="num_trips"></span><br>
 			</h3>
 		</div>
@@ -451,6 +452,7 @@
 				});
 			};
 			
+			// Go button functionality
 			$("#go_button").on("click", function(e) {
 				var month = $("#month_select").find(":selected").val();
 				var month_text = $("#month_select").find(":selected").text();
@@ -462,6 +464,30 @@
 				$(".stations").remove()
 				$(".lines").remove()
 				load_trips(year+month);
+			});
+			
+			// Select options subset (because not all months are available within each year)
+			$("#year_select").change(function() {
+				var val = $(this).val();
+				var month = $("#month_select").find(":selected").val();
+				if (val == "2018") {
+					$("#month_select").html("<option value='01'>January</option><option value='02'>February</option><option value='03'>March</option><option value='04'>April</option><option value='05'>May</option><option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>")
+					$("#month_select").val(month).change();
+				} else if (val == "2019") {
+					$("#month_select").html("<option value='01'>January</option><option value='02'>February</option><option value='03'>March</option><option value='04'>April</option><option value='05'>May</option>")
+					if (month == "01" || month == "02" || month == "03" || month == "04" || month == "05") {
+						$("#month_select").val(month).change();
+					} else {
+						$("#month_select").val("05").change();
+					};
+				} else if (val == "2017") {
+					$("#month_select").html("<option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>")
+					if (month == "01" || month == "02" || month == "03" || month == "04" || month == "05") {
+						$("#month_select").val("06").change();
+					} else {
+						$("#month_select").val(month).change();
+					};
+				};
 			});
 			
 			// Load Map
