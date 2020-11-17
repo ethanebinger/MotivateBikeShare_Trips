@@ -5,10 +5,9 @@ Spyder Editor
 This is a temporary script file.
 """
 
-import csv, json, urllib2
-from datetime import datetime
+import csv, json
 
-working_dir = r'C:\Desktop\FordGoBike'
+working_dir = r'../'
 data_files = [
     #'201706-fordgobike-tripdata.csv',
     #'201707-fordgobike-tripdata.csv',
@@ -22,7 +21,7 @@ data_files = [
     #'201803-fordgobike-tripdata.csv',
     #'201804-fordgobike-tripdata.csv',
     #'201805-fordgobike-tripdata.csv',
-    '201806-fordgobike-tripdata.csv'#,
+    #'201806-fordgobike-tripdata.csv',
     #'201807-fordgobike-tripdata.csv',
     #'201808-fordgobike-tripdata.csv',
     #'201809-fordgobike-tripdata.csv',
@@ -30,7 +29,27 @@ data_files = [
 	#'201811-fordgobike-tripdata.csv',
 	#'201812-fordgobike-tripdata.csv',
 	#'201901-fordgobike-tripdata.csv',
-	#'201902-fordgobike-tripdata.csv'
+	#'201902-fordgobike-tripdata.csv',
+    #'201903-fordgobike-tripdata.csv',
+    #'201904-fordgobike-tripdata.csv',
+    #'201905-baywheels-tripdata.csv',
+    #'201906-baywheels-tripdata.csv',
+    #'201907-baywheels-tripdata.csv',
+    #'201908-baywheels-tripdata.csv',
+    #'201909-baywheels-tripdata.csv',
+    #'201910-baywheels-tripdata.csv',
+    #'201911-baywheels-tripdata.csv',
+    #'201912-baywheels-tripdata.csv',
+    #'202001-baywheels-tripdata.csv',
+    #'202002-baywheels-tripdata.csv',
+    #'202003-baywheels-tripdata.csv',
+    '202004-baywheels-tripdata.csv',
+    '202005-baywheels-tripdata.csv',
+    '202006-baywheels-tripdata.csv',
+    '202007-baywheels-tripdata.csv',
+    '202008-baywheels-tripdata.csv',
+    '202009-baywheels-tripdata.csv',
+    '202010-baywheels-tripdata.csv'
 ]
 gbfs_stations = r'https://gbfs.fordgobike.com/gbfs/en/station_information.json'
 gbfs_regions = r'https://gbfs.fordgobike.com/gbfs/en/system_regions.json'

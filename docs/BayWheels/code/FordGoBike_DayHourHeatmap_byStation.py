@@ -8,21 +8,21 @@ Created on Fri Feb  8 14:38:02 2019
 import csv
 import datetime as datetime
 
-working_dir = r'C:\Desktop\FordGoBike'
+working_dir = r'../'
 data_files = [
-    '201706-fordgobike-tripdata.csv',
-    '201707-fordgobike-tripdata.csv',
-    '201708-fordgobike-tripdata.csv',
-    '201709-fordgobike-tripdata.csv',
-    '201710-fordgobike-tripdata.csv',
-    '201711-fordgobike-tripdata.csv',
-    '201712-fordgobike-tripdata.csv',
+    #'201706-fordgobike-tripdata.csv',
+    #'201707-fordgobike-tripdata.csv',
+    #'201708-fordgobike-tripdata.csv',
+    #'201709-fordgobike-tripdata.csv',
+    #'201710-fordgobike-tripdata.csv',
+    #'201711-fordgobike-tripdata.csv',
+    #'201712-fordgobike-tripdata.csv',
     #'201801-fordgobike-tripdata.csv',
     #'201802-fordgobike-tripdata.csv',
     #'201803-fordgobike-tripdata.csv',
     #'201804-fordgobike-tripdata.csv',
     #'201805-fordgobike-tripdata.csv',
-    '201806-fordgobike-tripdata.csv',
+    #'201806-fordgobike-tripdata.csv',
     #'201807-fordgobike-tripdata.csv',
     #'201808-fordgobike-tripdata.csv',
     #'201809-fordgobike-tripdata.csv',
@@ -30,7 +30,27 @@ data_files = [
 	#'201811-fordgobike-tripdata.csv',
 	#'201812-fordgobike-tripdata.csv',
 	#'201901-fordgobike-tripdata.csv',
-	#'201902-fordgobike-tripdata.csv'
+	#'201902-fordgobike-tripdata.csv',
+    #'201903-fordgobike-tripdata.csv',
+    #'201904-fordgobike-tripdata.csv',
+    #'201905-baywheels-tripdata.csv',
+    #'201906-baywheels-tripdata.csv',
+    #'201907-baywheels-tripdata.csv',
+    #'201908-baywheels-tripdata.csv',
+    #'201909-baywheels-tripdata.csv',
+    #'201910-baywheels-tripdata.csv',
+    #'201911-baywheels-tripdata.csv',
+    #'201912-baywheels-tripdata.csv',
+    #'202001-baywheels-tripdata.csv',
+    #'202002-baywheels-tripdata.csv',
+    #'202003-baywheels-tripdata.csv',
+    '202004-baywheels-tripdata.csv',
+    '202005-baywheels-tripdata.csv',
+    '202006-baywheels-tripdata.csv',
+    '202007-baywheels-tripdata.csv',
+    '202008-baywheels-tripdata.csv',
+    '202009-baywheels-tripdata.csv',
+    '202010-baywheels-tripdata.csv'
 ]
 
 for f in data_files:
@@ -61,6 +81,7 @@ for f in data_files:
     with open(working_dir + "/trip_data/" + f, 'r') as csvfile:
         reader = csv.DictReader(csvfile)
         for trip in reader:
+            trip = dict(('start_time' if k=='started_at' else k, v) for k, v in trip.items())
             start_time = str(trip['start_time'])
             try:
                 station_id = int(trip['start_station_id'])
@@ -88,7 +109,7 @@ for f in data_files:
     csvfile.close()
     
     # write to CSV
-    with open(working_dir+ "/heatmap_data/heatmap_data_"+f[:6]+".csv", "wb") as csv_file:
+    with open(working_dir+ "/heatmap_data/heatmap_data_"+f[:6]+".csv", "w") as csv_file:
         writer = csv.writer(csv_file)
         #data_files_trunc = [x[:6] for x in data_files]
         writer.writerow(["day"] + ["hour"] + stations + ["total"])
