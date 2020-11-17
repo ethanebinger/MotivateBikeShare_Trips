@@ -475,11 +475,11 @@
 					$("#month_select").html("<option value='01'>January</option><option value='02'>February</option><option value='03'>March</option><option value='04'>April</option><option value='05'>May</option><option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>")
 					$("#month_select").val(month).change();
 				} else if (val == "2020") {
-					$("#month_select").html("<option value='01'>January</option><option value='02'>February</option><option value='03'>March</option>")
-					if (month == "01" || month == "02" || month == "03") {
-						$("#month_select").val(month).change();
+					$("#month_select").html("<option value='01'>January</option><option value='02'>February</option><option value='03'>March</option><option value='04'>April</option><option value='05'>May</option><option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option>")
+					if (month == "11" || month == "12") {
+						$("#month_select").val("10").change();
 					} else {
-						$("#month_select").val("03").change();
+						$("#month_select").val(month).change();
 					};
 				} else if (val == "2017") {
 					$("#month_select").html("<option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>")
