@@ -108,7 +108,7 @@ for f in data_files:
     
     # write to CSV
     with open(working_dir+"/geojson_data/stations_"+f[:6]+".csv", "w") as csv_file:
-        writer = csv.writer(csv_file)
+        writer = csv.writer(csv_file, lineterminator='\n')
         #data_files_trunc = [x[:6] for x in data_files]
         writer.writerow(["station_id", "name", "lat", "lon"])
         for s in stations:

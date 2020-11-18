@@ -110,7 +110,7 @@ for f in data_files:
     
     # write to CSV
     with open(working_dir+ "/heatmap_data/heatmap_data_"+f[:6]+".csv", "w") as csv_file:
-        writer = csv.writer(csv_file, lineterminator = '\n')
+        writer = csv.writer(csv_file, lineterminator='\n')
         #data_files_trunc = [x[:6] for x in data_files]
         writer.writerow(["day"] + ["hour"] + stations + ["total"])
         for d in range(0,7):
