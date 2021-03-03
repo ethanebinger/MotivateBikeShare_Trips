@@ -43,13 +43,16 @@ data_files = [
     #'202001-baywheels-tripdata.csv',
     #'202002-baywheels-tripdata.csv',
     #'202003-baywheels-tripdata.csv',
-    '202004-baywheels-tripdata.csv',
-    '202005-baywheels-tripdata.csv',
-    '202006-baywheels-tripdata.csv',
-    '202007-baywheels-tripdata.csv',
-    '202008-baywheels-tripdata.csv',
-    '202009-baywheels-tripdata.csv',
-    '202010-baywheels-tripdata.csv'
+    #'202004-baywheels-tripdata.csv',
+    #'202005-baywheels-tripdata.csv',
+    #'202006-baywheels-tripdata.csv',
+    #'202007-baywheels-tripdata.csv',
+    #'202008-baywheels-tripdata.csv',
+    #'202009-baywheels-tripdata.csv',
+    #'202010-baywheels-tripdata.csv',
+    '202011-baywheels-tripdata.csv',
+    '202012-baywheels-tripdata.csv',
+    '202101-baywheels-tripdata.csv'
 ]
 gbfs_stations = r'https://gbfs.fordgobike.com/gbfs/en/station_information.json'
 gbfs_regions = r'https://gbfs.fordgobike.com/gbfs/en/system_regions.json'

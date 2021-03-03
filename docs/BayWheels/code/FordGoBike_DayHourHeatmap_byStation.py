@@ -44,13 +44,16 @@ data_files = [
     #'202001-baywheels-tripdata.csv',
     #'202002-baywheels-tripdata.csv',
     #'202003-baywheels-tripdata.csv',
-    '202004-baywheels-tripdata.csv',
-    '202005-baywheels-tripdata.csv',
-    '202006-baywheels-tripdata.csv',
-    '202007-baywheels-tripdata.csv',
-    '202008-baywheels-tripdata.csv',
-    '202009-baywheels-tripdata.csv',
-    '202010-baywheels-tripdata.csv'
+    #'202004-baywheels-tripdata.csv',
+    #'202005-baywheels-tripdata.csv',
+    #'202006-baywheels-tripdata.csv',
+    #'202007-baywheels-tripdata.csv',
+    #'202008-baywheels-tripdata.csv',
+    #'202009-baywheels-tripdata.csv',
+    #'202010-baywheels-tripdata.csv',
+    '202011-baywheels-tripdata.csv',
+    '202012-baywheels-tripdata.csv',
+    '202101-baywheels-tripdata.csv'
 ]
 
 for f in data_files:
